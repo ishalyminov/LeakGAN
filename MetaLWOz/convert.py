@@ -1,5 +1,5 @@
 import cPickle
-data_Name = "cotra"
+data_Name = "metalwoz"
 vocab_file = "vocab_" + data_Name + ".pkl"
 
 word, vocab = cPickle.load(open('save/'+vocab_file))

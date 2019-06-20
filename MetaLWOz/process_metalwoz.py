@@ -31,10 +31,10 @@ def write_dataset(in_dataset_name, in_train, in_test, in_vocab):
         os.makedirs(RESULT_FOLDER)
     with open(os.path.join(RESULT_FOLDER, 'realtrain_{}.txt'.format(in_dataset_name)), 'w') as train_out:
         for line in in_train:
-            train_out.write('\n'.join(map(str, line)) + '\n')
+            train_out.write(' '.join(map(str, line)) + '\n')
     with open(os.path.join(RESULT_FOLDER, 'realtest_{}.txt'.format(in_dataset_name)), 'w') as test_out:
         for line in in_test:
-            test_out.write('\n'.join(map(str, line)) + '\n')
+            test_out.write(' '.join(map(str, line)) + '\n')
     with open(os.path.join(RESULT_FOLDER, 'vocab_{}.pkl'.format(in_dataset_name)), 'w') as vocab_out:
         cPickle.dump(in_vocab, vocab_out)
 
@@ -56,7 +56,7 @@ def init_argument_parser():
     parser.add_argument('source_file')
     parser.add_argument('--dataset_name', default='metalwoz')
     parser.add_argument('--max_vocab_size', default=10000)
-    parser.add_argument('--max_seq_len', default=20)
+    parser.add_argument('--max_seq_len', default=32)
     return parser
 
 if __name__ == '__main__':

@@ -44,7 +44,7 @@ dis_batch_size = 64
 #  Basic Training Parameters
 #########################################################################################
 TOTAL_BATCH = 800
-positive_file = 'save/realtrain_cotra.txt'
+positive_file = 'save/realtrain_metalwoz.txt'
 negative_file = 'save/generator_sample.txt'
 generated_num = 10000
 model_path = './ckpts'
@@ -154,7 +154,7 @@ def main():
     assert START_TOKEN == 0
 
     gen_data_loader = Gen_Data_loader(BATCH_SIZE,SEQ_LENGTH)
-    vocab_size = 4839
+    vocab_size = 10000 
     dis_data_loader = Dis_dataloader(BATCH_SIZE,SEQ_LENGTH)
     discriminator = Discriminator(SEQ_LENGTH,num_classes=2,vocab_size=vocab_size,dis_emb_dim=dis_embedding_dim,filter_sizes=dis_filter_sizes,num_filters=dis_num_filters,
                         batch_size=BATCH_SIZE,hidden_dim=HIDDEN_DIM,start_token=START_TOKEN,goal_out_size=GOAL_OUT_SIZE,step_size=4)

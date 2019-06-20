@@ -23,8 +23,8 @@ def create_vocabulary(in_lines, in_max_size):
         for token in utterance.split():
             freqdict[token] += 1
     freqdict_sorted = sorted(freqdict.items(), key=lambda x: x[1], reverse=True)[:in_max_size]
-    vocab = dict(freqdict_sorted)
     rev_vocab = [item[0] for item in freqdict_sorted]
+    vocab = {item: idx for item, idx in enumerate(rev_vocab)}
     return vocab, rev_vocab
 
 
@@ -33,5 +33,5 @@ def vectorize_sequences(in_lines, in_vocab, in_max_seq_len):
     for line in in_lines:
         tokens = line.split()
         seq = [in_vocab.get(token, UNK_ID) for token in tokens] + [EOS_ID]
-        result.append(seq[:in_max_seq_len])
+        result.append(seq[:in_max_seq_len] + [PAD_ID for _ in range(max(in_max_seq_len - len(seq), 0))])
     return result
